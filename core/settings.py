@@ -1,7 +1,7 @@
-from pathlib import Path
-from dotenv import load_dotenv
-
 import os
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
-    "apps"
+    "apps",
 ]
 
 MIDDLEWARE = [
