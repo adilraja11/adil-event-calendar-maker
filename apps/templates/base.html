@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" data-theme="caramellatte">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'output.css'%}">
+  <title>Event Calendar Maker</title>
+</head>
+<body>
+  <header class="navbar bg-neutral text-neutral-content">
+    <div class='navbar-start'>
+      <button class="btn btn-ghost text-xl">eventMakers</button>
+    </div>
+    <div class='navbar-end'>
+      <a href="" class='btn'>Add Event</a>
+    </div>
+  </header>
+  {% block content %}{% endblock %}
+</body>
+</html>
