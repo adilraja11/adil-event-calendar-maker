@@ -1,11 +1,11 @@
-from django.shortcuts import redirect, render
-from django.views.generic import DetailView, ListView, View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import redirect, render
+from django.views.generic import DetailView, ListView, View
 
-from .models import Event
 from .forms import UserRegistrationForm
+from .models import Event
 
 
 # Create your views here.
@@ -24,6 +24,7 @@ class RegisterView(View):
         else:
             messages.error(request, "Registration failed. Please try again.")
             return render(request, "register.html", {"form": form})
+
 
 class LoginView(View):
     def get(self, request):
@@ -46,12 +47,14 @@ class LoginView(View):
             messages.error(request, "Invalid username or password.")
 
         return render(request, "login.html", {"form": form})
-    
+
+
 class LogoutView(View):
     def post(self, request):
         logout(request)
         messages.success(request, "Logged out successfully.")
         return redirect("event_list")
+
 
 class EventListView(ListView):
     model = Event
@@ -70,7 +73,7 @@ class EventDetailView(DetailView):
 class EventCreateView(View):
     def get(self, request):
         context = {
-            'LOCATION_CHOICES': Event.LOCATION_CHOICES,
+            "LOCATION_CHOICES": Event.LOCATION_CHOICES,
         }
 
         return render(request, "event_create.html", context)
