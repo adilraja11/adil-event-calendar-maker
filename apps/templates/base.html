@@ -13,8 +13,16 @@
     <div class='navbar-start'>
       <button class="btn btn-ghost text-xl">eventMakers</button>
     </div>
-    <div class='navbar-end'>
-      <a href="" class='btn'>Add Event</a>
+    <div class='navbar-end flex'>
+      {% if user.is_authenticated %}
+        <a href="{% url 'event_create' %}" class='btn mr-2'>Add Event</a>
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn">Logout</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}" class='btn'>Login</a>
+      {% endif %}
     </div>
   </header>
   {% block content %}{% endblock %}

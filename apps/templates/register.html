@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="flex justify-center" method="post">
+  {% csrf_token %}
+  <fieldset class="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
+    <legend class="fieldset-legend text-center text-xl font-bold">Register</legend>
+
+     <!-- Display Form Errors -->
+    {% if form.errors %}
+      <div class="alert alert-error mb-4">
+        <ul>
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    
+    <label class="fieldset-label">Username</label>
+    <input type="text" name="username" class="input w-full mb-4" placeholder="Enter your username" required />
+
+    <label class="fieldset-label">Email</label>
+    <input type="email" name="email" class="input w-full mb-4" placeholder="Enter your email" required />
+
+    <label class="fieldset-label">Password</label>
+    <input type="password" name="password1" class="input w-full mb-4" placeholder="Enter your password" required />
+
+    <label class="fieldset-label">Password confirmation</label>
+    <input type="password" name="password2" class="input w-full mb-4" placeholder="Confirm your password" required />
+
+    <!-- Submit Button -->
+    <div class="form-control mt-4">
+      <button type="submit" class="btn btn-neutral w-full">Register</button>
+    </div>
+
+    <!-- Redirect to Login -->
+    <div class="mt-4 text-center">
+      <p>Already have an account? <a href="{% url 'login' %}" class="link link-primary">Login here</a></p>
+    </div>
+  </fieldset>
+</form>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form class='flex justify-center' method='post'>
+    {% csrf_token %}
+    <fieldset class="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
+      <legend class="fieldset-legend text-center text-xl font-bold">Add Event</legend>
+      
+      <label class="fieldset-label">Event Name</label>
+      <input type="text" name='name' class="input" placeholder="Type your event name" />
+      
+      <label class="fieldset-label">Description</label>
+      <textarea class="textarea" name='description' placeholder="Input your event description"></textarea>
+      
+      <label class="fieldset-label">Date</label>
+      <input type="date" name='date' class="input" placeholder="Name" />
+
+      <label class="fieldset-label">Location</label>
+      <select class="select" name='location'>
+        <option disabled selected>Pick a location</option>
+        {% for value, label in LOCATION_CHOICES %}
+          <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
+      </select>
+
+      <button class="btn btn-neutral mt-4">Submit</button>
+    </fieldset>
+  </form>
+{% endblock  %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="flex justify-center" method="post">
+  {% csrf_token %}
+  <fieldset class="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
+    <legend class="fieldset-legend text-center text-xl font-bold">Login</legend>
+    
+    <!-- Email Field -->
+    <label class="fieldset-label">Username</label>
+    <input type="text" name="username" class="input w-full mb-4" placeholder="Enter your email" required />
+
+    <!-- Password Field -->
+    <label class="fieldset-label">Password</label>
+    <input type="password" name="password" class="input w-full mb-4" placeholder="Enter your password" required />
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-neutral w-full mt-4">Login</button>
+
+    <!-- Redirect to Register -->
+    <div class="mt-4 text-center">
+      <p>Don't have an account? <a href="{% url 'register' %}" class="link link-primary">Register here</a></p>
+    </div>
+  </fieldset>
+</form>
+{% endblock %}
