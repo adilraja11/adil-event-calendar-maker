@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, View
+from django.views.generic import ListView, DetailView, View
 from django.shortcuts import redirect
 
 from .models import Event
@@ -10,10 +10,12 @@ class EventListView(ListView):
     template_name = 'event_list.html'
     context_object_name = 'events'
 
-class EventDetailView(View):
+class EventDetailView(DetailView):
     model = Event
     template_name = 'event_detail.html'
-    context_object_name = 'events'
+    context_object_name = 'event'
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
 
 class EventCreateView(View):
     def get(self, request):
@@ -31,5 +33,5 @@ class EventCreateView(View):
             location=location,
             created_by=created_by
         )
-        
+
         return redirect('event_list')

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ event.name }}</h1>
+  <div>
+    <div>Created by: {{ event.created_by }}</div>
+    <div>{{ event.location }}</div>
+    <div>{{ event.description }}</div>
+    <div>{{ event.date }}</div>
+  </div>
+{% endblock  %}
