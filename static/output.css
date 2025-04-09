@@ -2,6 +2,7 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
+    --color-gray-500: oklch(0.551 0.027 264.364);
     --spacing: 0.25rem;
     --container-xs: 20rem;
     --text-xs: 0.75rem;
@@ -1758,6 +1759,9 @@
         color: color-mix(in oklab, var(--color-primary) 80%, #000);
       }
     }
+  }
+  .text-gray-500 {
+    color: var(--color-gray-500);
   }
   .text-neutral-content {
     color: var(--color-neutral-content);
