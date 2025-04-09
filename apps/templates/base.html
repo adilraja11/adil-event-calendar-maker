@@ -11,7 +11,7 @@
 <body>
   <header class="navbar bg-neutral text-neutral-content">
     <div class='navbar-start'>
-      <button class="btn btn-ghost text-xl">eventMakers</button>
+      <a href='{% url "event_list" %}' class="btn btn-ghost text-xl">eventMakers</a>
     </div>
     <div class='navbar-end flex'>
       {% if user.is_authenticated %}

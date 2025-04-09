@@ -3,7 +3,7 @@
 {% block content %}
   <main class='mx-8 my-4'>
     <ul class='list bg-base-100 rounded-box shadow-md'>
-      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">All Event</li>
+      <li class="p-4 pb-2 text-xl opacity-60 tracking-wide">All Event</li>
 
       {% for event in events  %}
       <li class='list-row'>
@@ -14,11 +14,14 @@
         </div>
         <div>
           <div>{{ event.name }}</div>
-          {% if event.location == 'online' %}
-            <div class="badge badge-accent">{{ event.location }}</div>
-          {% else %}
-            <div class="badge badge-neutral">{{ event.location }}</div>
-          {% endif %}
+          <div class='flex'>
+            {% if event.location == 'online' %}
+              <div class="badge badge-accent">{{ event.location|upper }}</div>
+            {% else %}
+              <div class="badge badge-neutral">{{ event.location|upper }}</div>
+            {% endif %}
+            <div class='ml-2'>{{ event.date }}</div>
+          </div>
         </div>
         <div></div>
         <a href="{% url "event_detail" event.id%}">
@@ -27,5 +30,21 @@
       </li>
       {% endfor %}
     </ul>
+    
+    <div class='mt-4 flex justify-end gap-2'>
+      {% if is_paginated %}
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}">
+            <button class="btn btn-secondary">Previous</button>
+          </a>
+        {% endif %}
+        
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">
+            <button class="btn btn-primary">Next</button>
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
   </main>
 {% endblock  %}
