@@ -14,12 +14,12 @@
             </div>
           </div>
           <div>
-            <div>{{ event.name }}</div>
+            <div class='font-semibold text-xl'>{{ event.name }}</div>
             <div class='flex'>
               {% if event.location == 'online' %}
                 <div class="badge badge-accent">{{ event.location|upper }}</div>
               {% else %}
-                <div class="badge badge-neutral">{{ event.location|upper }}</div>
+                <div class="badge badge-secondary">{{ event.location|upper }}</div>
               {% endif %}
               <div class='ml-2'>{{ event.date }}</div>
             </div>
