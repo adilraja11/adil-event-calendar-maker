@@ -6,6 +6,7 @@ from django.views.generic import DetailView, ListView, View
 
 from .forms import UserRegistrationForm
 from .models import Event
+from .tasks import logging_user_activity
 
 
 # Create your views here.
@@ -61,6 +62,7 @@ class EventListView(ListView):
     template_name = "event_list.html"
     context_object_name = "events"
     paginate_by = 5
+    ordering = ['date']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -73,6 +75,16 @@ class EventDetailView(DetailView):
     context_object_name = "event"
     slug_field = "id"
     slug_url_kwarg = "id"
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+
+        if request.user.is_authenticated:
+            logging_user_activity(request.user, f"viewed event: {self.object.name}")
+        else:
+            logging_user_activity(None, f"viewed event (anonymous): {self.object.name}")
+
+        return response
 
 
 class EventCreateView(View):
